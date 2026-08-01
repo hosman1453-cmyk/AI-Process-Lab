@@ -13,5 +13,22 @@ services:
     environment:
       - TZ=Europe/Berlin
 
+  postgres:
+    image: postgres:16
+    container_name: ai-process-postgres
+    restart: always
+
+    environment:
+      POSTGRES_DB: ai_process_db
+      POSTGRES_USER: n8n_user
+      POSTGRES_PASSWORD: ***REMOVED***
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
 volumes:
   n8n_data:
+  postgres_data:
